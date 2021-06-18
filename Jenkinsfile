@@ -7,7 +7,7 @@ pipeline {
     stages {
         stage ("build java code"){
             steps{
-                scripts{
+                script{
                     sh """
                     mvn clean
                     mvn install
