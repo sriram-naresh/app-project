@@ -23,9 +23,7 @@ pipeline {
         stage ("build images") {
             steps{
                 script{
-                    sh """
-                    ' docker build -t .'
-                    """
+                    sh  'docker build -t . '
                 }
             }
         }
