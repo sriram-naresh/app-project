@@ -23,7 +23,9 @@ pipeline {
         stage ("build images") {
             steps{
                 script{
-                    dockerImage = docker.build registry + ":V$BUILD_ID"
+                    sh """
+                    ' docker build -t sriramnaresh/webapp1 . '
+                    """
                 }
             }
         }
