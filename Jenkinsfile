@@ -1,9 +1,13 @@
 pipeline {
     agent any
     tools {
-        jdk 'jdk'
+        Jdk 'jdk'
         maven 'maven'
     }
+    environment {
+        registry = "sriramnaresh/dockerimage"
+        registryCredentials = "dockercrends" 
+        
     stages {
         stage ("build java code"){
             steps{
@@ -15,5 +19,13 @@ pipeline {
                 }
             }
         }
+        stage ("build images") {
+            steps{
+                script{
+                    dockerImage = docker.build registry + "v$BUILD_ID"
+                }
+            }
+        }
+                    
     }
 }
