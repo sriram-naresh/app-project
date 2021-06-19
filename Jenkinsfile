@@ -38,9 +38,9 @@ pipeline{
         stage('Deploy Image') {
           steps{
             script {
-              withCredentials([usernameColonPassword(credentialsId: 'dockercrends', variable: 'dockercrends')]) {
-                  sh "docker login -u sriramnaresh -p ${dockercrends}"
-              }
+             withCredentials([string(credentialsId: 'docker_ssh', variable: 'dockercrends')]) {
+                 sh " docker login -u sriramnaresh -p ${dockercrends}"
+               }
                sh ' docker push sriramnaresh/java-image'
             }
           }
