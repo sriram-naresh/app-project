@@ -27,7 +27,7 @@ pipeline{
         stage('docker image build'){
             steps{
                 script{
-                    dockerImage= docker.build.sriram-naresh/appo1 + ":V$BUILD_ID "
+                    sh ' docker build -t sriram-naresh/java-image .'
                 }
             }
         }
