@@ -51,4 +51,13 @@ pipeline{
           }
         }
      }
- }
+    stage('deploy') {
+        steps{
+            script{
+                sh """
+                        aws eks update-kubeconfig --name myeks
+                        helm upgrade --install --force vproifle-stack helm/vprofilecharts --set appimage=${registry}:${BUILD_NUMBER}"
+                """
+                
+                }
+                
