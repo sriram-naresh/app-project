@@ -38,7 +38,7 @@ pipeline{
         stage("push images"){
             steps{
                 script{
-                    docker.withRegistry ("registryCrendials"){
+                    docker.withRegistry (' ', registryCrendential){
                         dockerImage.push ("V$BUILD_ID")
                     }
                 }
