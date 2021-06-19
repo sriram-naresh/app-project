@@ -15,5 +15,11 @@ pipeline{
                     }
                }
         }
+        stage('bild code test'){
+            steps{
+                script{
+                    sh """
+                    mvn test
+                    """
      }
  }
