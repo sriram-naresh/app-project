@@ -21,5 +21,8 @@ pipeline{
                     sh """
                     mvn test
                     """
+                }
+            }
+        }
      }
  }
