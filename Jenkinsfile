@@ -34,7 +34,7 @@ pipeline{
                 }
             }
         }
-        stage(push images){
+        stage("push images"){
             steps{
                 script{
                     docker.withRegistry ("registryCrendials"){
