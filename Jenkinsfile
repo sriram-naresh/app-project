@@ -7,6 +7,7 @@ pipeline{
     environment{
         registry ="sriramnaresh/java-image"
         registryCrendentail ="dockercrends"
+    }
     stages{
         stage("build java code"){
                steps{
