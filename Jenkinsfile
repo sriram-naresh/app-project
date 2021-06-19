@@ -38,9 +38,8 @@ pipeline{
         stage("push images"){
             steps{
                 script{
-                    docker.withRegistry (' ', registryCrendential){
-                        dockerImage.push ("V$BUILD_ID")
-                    }
+                   withCredentials([string(credentialsId: 'dockercrends', variable: 'dockercrends')]) {
+            sh ' docker login -u sriramnaresh -p ${dockercrends}
                 }
             }
         }
