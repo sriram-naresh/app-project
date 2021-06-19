@@ -28,29 +28,27 @@ pipeline{
                 }
             }
         }
-        stage('docker image build'){
+        stage('Building image') {
             steps{
-                script{
-                    sh ' docker build -t sriram-naresh/java-image .'
-                }
+              script {
+                dockerImage = docker.build registry + ":$BUILD_NUMBER"
+              }
             }
         }
-        stage("push images"){
-            steps{
-                script{
-                   docker.withRegistry('', registryCredential) {
-                   docke push ("V$BUILD_NUMBER")
-                   
-                   }
-                }
+        stage('Deploy Image') {
+          steps{
+            script {
+              docker.withRegistry( '', registryCredential ) {
+                dockerImage.push("$BUILD_NUMBER")
+                dockerImage.push('latest')
+              }
             }
+          }
         }
-        stage("deleted unsage"){
-            steps{
-                script{
-                    sh "docker rmi $registry:V$BUILD_ID"
-                }
-            }
+        stage('Remove Unused docker image') {
+          steps{
+            sh "docker rmi $registry:$BUILD_NUMBER"
+          }
         }
      }
  }
