@@ -39,7 +39,8 @@ pipeline{
             steps{
                 script{
                    withCredentials([string(credentialsId: 'dockercrends', variable: 'dockercrends')]) {
-            sh ' docker login -u sriramnaresh -p ${dockercrends}
+                   sh ' docker login -u sriramnaresh -p ${dockercrends}'
+                   }
                 }
             }
         }
