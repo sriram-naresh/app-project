@@ -31,7 +31,7 @@ pipeline{
         stage('Building image') {
             steps{
               script {
-                docker build -t  java-image+ ":$BUILD_NUMBER" .
+                  sh 'docker build -t  java-image+ ":V${BUILD_NUMBER}" . '
               }
             }
         }
