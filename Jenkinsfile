@@ -24,5 +24,12 @@ pipeline{
                 }
             }
         }
+        stage('docker image build'){
+            steps{
+                script{
+                    dockerImage= docker.build.sriram-naresh/appo1 + ":V$BUILD_ID "
+                }
+            }
+        }
      }
  }
